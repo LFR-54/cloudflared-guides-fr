@@ -16,10 +16,10 @@ https://quelque-chose.trycloudflare.com
 
 C’est utile pour :
 
-- tester une application locale 
-- montrer un projet pendant une durée courte 
-- vérifier si une application répond depuis Internet 
-- faire un test avant un tunnel permanent 
+- tester une application locale
+- montrer un projet pendant une durée courte
+- vérifier si une application répond depuis Internet
+- faire un test avant un tunnel permanent
 - dépanner sans toucher au domaine officiel.
 
 ---
@@ -31,16 +31,16 @@ C’est utile pour :
 
 À retenir :
 
-- adresse aléatoire 
-- domaine en `trycloudflare.com` 
-- pas de domaine personnalisé 
-- pas prévu pour rester permanent 
-- arrêt du lien quand la commande s’arrête 
-- pas de service automatique par défaut 
+- adresse aléatoire
+- domaine en `trycloudflare.com`
+- pas de domaine personnalisé
+- pas prévu pour rester permanent
+- arrêt du lien quand la commande s’arrête
+- pas de service automatique par défaut
 - protection à prévoir si l’application est sensible.
 
 > [!NOTE]
-> Si pendant le Quick Tunnel il devait y avoir une coupure réseau, de quelque minutes par exemple, et que ce dernier revient juste après Quick Tunnel ce reconnecte automatiquement et n'annulera pas votre domaine en cours.
+> Si le réseau coupe pendant quelques minutes puis revient, le Quick Tunnel se reconnecte généralement automatiquement et conserve l’adresse temporaire tant que la commande reste lancée.
 
 ---
 
@@ -68,7 +68,7 @@ Si l’application ne répond pas localement, le Quick Tunnel ne fonctionnera pa
 
 ### 4.1. Installer `cloudflared`
 
-Pour un Quick Tunnel, l’utilisateur n’a pas besoin d’avoir déjà un compte Cloudflare, ni de créer un tunnel dans le dashboard Cloudflare.
+Pour un Quick Tunnel, l’utilisateur n’a pas besoin d’avoir déjà un compte Cloudflare ni de créer un tunnel dans le dashboard Cloudflare.
 
 Il doit seulement avoir `cloudflared`, le programme qui ouvre la connexion temporaire vers Cloudflare.
 
@@ -238,10 +238,10 @@ Ici, `web` est le nom du conteneur de l’application.
 
 Le tunnel permanent devient nécessaire pour :
 
-- une adresse propre comme `app.mondomaine.fr` 
-- un service qui redémarre automatiquement 
-- une configuration durable 
-- une protection via Cloudflare Access 
+- une adresse propre comme `app.mondomaine.fr`
+- un service qui redémarre automatiquement
+- une configuration durable
+- une protection via Cloudflare Access
 - une publication sérieuse ou régulière.
 
 Dans ce cas, lire ensuite :

@@ -36,7 +36,7 @@ http://192.168.1.50:8080
 ```mermaid
 flowchart TD
     A[Application locale testée] --> B[Domaine actif dans Cloudflare]
-    B --> C[Créer tunnel dans Cloudflare]
+    B --> C[Créer le tunnel dans Cloudflare]
     C --> D[Installer cloudflared]
     D --> E[Installer comme service ou conteneur]
     E --> F[Tunnel Healthy]
@@ -353,6 +353,7 @@ Dans Cloudflare :
 
 ```text
 Cloudflare Dashboard
+→ Protect & Connect
 → Networking
 → Tunnels
 → vérifier le statut du tunnel
@@ -488,12 +489,170 @@ https://app.mondomaine.fr
 
 Tests utiles :
 
-- fenêtre privée 
-- téléphone en 4G/5G 
-- autre réseau Internet 
+- fenêtre privée
+- téléphone en 4G/5G
+- autre réseau Internet
 - vidage du cache DNS si nécessaire.
 
 Si l’adresse ne répond pas correctement, utiliser `04_Depannage.md`.
+
+---
+
+## 15. Désinstaller complètement un tunnel permanent
+
+Pour retirer proprement un tunnel permanent, il faut supprimer deux choses :
+
+1. la configuration côté Cloudflare, c’est-à-dire la route publique et éventuellement le tunnel
+2. le connecteur local, c’est-à-dire le service Windows, le service Linux ou le conteneur Docker
+
+### 15.1. Supprimer la route et le tunnel dans Cloudflare
+
+Dans le Dashboard Cloudflare :
+
+```text
+Cloudflare Dashboard
+→ Protect & Connect
+→ Networking
+→ Tunnels
+→ choisir le tunnel
+→ Routes / Public Hostnames
+→ supprimer la route publique concernée
+```
+
+Si le tunnel ne sert plus à aucune application, supprimer ensuite le tunnel lui-même depuis la page des tunnels.
+
+Après suppression, vérifier aussi dans :
+
+```text
+Cloudflare Dashboard
+→ sélectionner le domaine
+→ DNS
+→ Records
+```
+
+S’il reste un enregistrement DNS inutile pour l’ancien sous-domaine, le supprimer.
+
+### 15.2. Désinstaller sur Windows
+
+Ouvrir PowerShell en administrateur.
+
+Vérifier le service :
+
+```powershell
+Get-Service cloudflared
+```
+
+Arrêter le service si nécessaire :
+
+```powershell
+Stop-Service cloudflared
+```
+
+Désinstaller le service :
+
+```powershell
+cloudflared service uninstall
+```
+
+Si `cloudflared` n’est pas dans le `PATH`, se placer dans le dossier de l’exécutable :
+
+```powershell
+cd C:\Cloudflared\bin
+.\cloudflared.exe service uninstall
+```
+
+Si `cloudflared` a été installé avec `winget`, désinstaller le programme :
+
+```powershell
+winget uninstall --id Cloudflare.cloudflared
+```
+
+Si `cloudflared` a été installé avec le fichier MSI, le désinstaller depuis les applications Windows.
+
+> [!WARNING]
+> Supprimer les dossiers suivants seulement si la machine ne doit plus exécuter aucun tunnel Cloudflare.
+
+```powershell
+Remove-Item -Recurse -Force C:\Cloudflared
+Remove-Item -Recurse -Force "$env:USERPROFILE\.cloudflared"
+Remove-Item -Recurse -Force "C:\Windows\System32\config\systemprofile\.cloudflared"
+```
+
+### 15.3. Désinstaller sur Linux Debian/Ubuntu/Raspberry Pi OS
+
+Désinstaller le service :
+
+```bash
+sudo cloudflared service uninstall
+```
+
+Vérifier que le service n’est plus présent :
+
+```bash
+sudo systemctl status cloudflared
+```
+
+Si le service existe encore, l’arrêter puis le désactiver :
+
+```bash
+sudo systemctl stop cloudflared
+sudo systemctl disable cloudflared
+```
+
+Supprimer ensuite le paquet :
+
+```bash
+sudo apt-get purge cloudflared
+sudo apt-get autoremove
+```
+
+Supprimer les fichiers de dépôt ajoutés pour `cloudflared` :
+
+```bash
+sudo rm -f /etc/apt/sources.list.d/cloudflared.list
+sudo rm -f /usr/share/keyrings/cloudflare-main.gpg
+sudo apt-get update
+```
+
+> [!WARNING]
+> Supprimer les dossiers suivants seulement si aucun autre tunnel Cloudflare n’utilise cette machine.
+
+```bash
+rm -rf ~/.cloudflared
+sudo rm -rf /etc/cloudflared
+```
+
+### 15.4. Désinstaller avec Docker
+
+Si le tunnel a été lancé avec `docker run`, supprimer le conteneur :
+
+```bash
+docker rm -f cloudflared
+```
+
+Supprimer l’image si elle n’est plus utile :
+
+```bash
+docker image rm cloudflare/cloudflared:latest
+```
+
+Si un réseau Docker dédié avait été créé uniquement pour le tunnel, le supprimer :
+
+```bash
+docker network rm tunnel_net
+```
+
+Si le tunnel a été lancé avec Docker Compose, se placer dans le dossier du fichier `compose.yml`, puis arrêter et supprimer le conteneur :
+
+```bash
+docker compose down
+```
+
+Supprimer ensuite le fichier `.env` uniquement s’il ne contient que le token du tunnel supprimé :
+
+```bash
+rm -f .env
+```
 
 ---
 
@@ -502,4 +661,6 @@ Si l’adresse ne répond pas correctement, utiliser `04_Depannage.md`.
 - Créer un tunnel depuis le Dashboard principal : https://developers.cloudflare.com/tunnel/setup/
 - Créer un tunnel depuis Zero Trust : https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/get-started/create-remote-tunnel/
 - Exécution comme service : https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/do-more-with-tunnels/local-management/as-a-service/
+- Désinstallation du service `cloudflared` : https://developers.cloudflare.com/tunnel/troubleshooting/
+- Téléchargement et paquets `cloudflared` : https://developers.cloudflare.com/tunnel/downloads/
 - Cloudflare Tunnel : https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/

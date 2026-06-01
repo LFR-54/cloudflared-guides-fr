@@ -10,12 +10,12 @@
 
 Ce document prépare tout ce qui doit exister avant de créer un tunnel permanent :
 
-- un nom de domaine 
-- un compte Cloudflare 
-- le domaine ajouté dans Cloudflare 
-- les serveurs DNS du registrar remplacés par ceux de Cloudflare 
-- les DNS existants vérifiés 
-- une application locale déjà fonctionnelle 
+- un nom de domaine
+- un compte Cloudflare
+- le domaine ajouté dans Cloudflare
+- les serveurs DNS du registrar remplacés par ceux de Cloudflare
+- les DNS existants vérifiés
+- une application locale déjà fonctionnelle
 - les informations locales utiles notées proprement.
 
 Le tunnel permanent ne doit être créé qu’après cette préparation. Sinon, les erreurs DNS, de domaine ou de Service URL deviennent difficiles à distinguer.
@@ -26,13 +26,13 @@ Le tunnel permanent ne doit être créé qu’après cette préparation. Sinon, 
 
 Un domaine peut être acheté chez un registrar, par exemple :
 
-- OVH 
-- Ionos 
-- Namecheap 
-- Gandi 
-- Infomaniak 
-- Dynadot 
-- Porkbun 
+- OVH
+- Ionos
+- Namecheap
+- Gandi
+- Infomaniak
+- Dynadot
+- Porkbun
 - Cloudflare Registrar si disponible pour le domaine concerné.
 
 Exemple :
@@ -69,7 +69,7 @@ Dans le Dashboard Cloudflare :
 Cloudflare Dashboard
 → Add a site
 → entrer le domaine, par exemple mondomaine.fr
-→ choisir le plan adapté (free version)
+→ choisir le plan adapté, par exemple l’offre gratuite
 → continuer
 ```
 
@@ -77,9 +77,11 @@ Cloudflare analyse ensuite les enregistrements DNS existants. Cette étape est i
 
 ---
 
-## 5. Vérifier les DNS détectés par Cloudflare (VOUS POUVEZ PASSER SAUF SI UTILISÉ POUR LES E-MAILS)
+## 5. Vérifier les DNS détectés par Cloudflare
 
 Avant de modifier les serveurs DNS chez le registrar, il faut vérifier ce que Cloudflare a détecté.
+
+Cette étape est surtout importante si le domaine est déjà utilisé, par exemple pour un site existant ou des e-mails.
 
 Dans Cloudflare :
 
@@ -108,7 +110,7 @@ Cloudflare Dashboard
 
 ## 6. Récupérer les nameservers Cloudflare
 
-Juste après la vérification des DNS, pendant l’ajout du domaine donc, Cloudflare fournit deux serveurs DNS à utiliser.
+Pendant l’ajout du domaine, après la vérification des DNS détectés, Cloudflare fournit deux serveurs DNS à utiliser.
 
 Exemple fictif :
 
@@ -150,10 +152,10 @@ bob.ns.cloudflare.com
 
 Selon le registrar, le menu peut s’appeler :
 
-- `Serveurs DNS` 
-- `Nameservers` 
-- `Gestion DNS` 
-- `DNS avancé` 
+- `Serveurs DNS`
+- `Nameservers`
+- `Gestion DNS`
+- `DNS avancé`
 - `Délégation DNS`.
 
 Le principe reste le même : les anciens serveurs DNS du registrar doivent être remplacés par les deux serveurs DNS fournis par Cloudflare.
@@ -248,7 +250,7 @@ Si ce test échoue, le problème doit être corrigé avant de créer le tunnel.
 |---|---|---|
 | Application sur le même PC/serveur | Même machine | `http://localhost:8080` |
 | Application sur un autre serveur LAN | Machine stable du LAN | `http://192.168.1.50:8080` |
-| Application dans Docker | Hôte Docker ou conteneur dédié | `http://web:80` ou `host.docker.internal` |
+| Application dans Docker | Hôte Docker ou conteneur dédié | `http://web:80` ou `http://host.docker.internal:8080` |
 | Raspberry Pi toujours allumé | Raspberry Pi | Selon l’adresse locale de l’application |
 
 La machine `cloudflared` doit rester allumée si le tunnel permanent doit rester disponible.

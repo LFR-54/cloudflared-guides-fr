@@ -108,6 +108,18 @@ ou :
 cloudflared.exe service install <TOKEN_DU_TUNNEL>
 ```
 
+### Désinstaller le service
+
+```powershell
+cloudflared service uninstall
+```
+
+Si l’exécutable est dans le dossier courant :
+
+```powershell
+.\cloudflared.exe service uninstall
+```
+
 ---
 
 ## 5. Linux — service `cloudflared`
@@ -146,6 +158,12 @@ sudo journalctl -u cloudflared -f
 
 ```bash
 sudo cloudflared service install <TOKEN_DU_TUNNEL>
+```
+
+### Désinstaller le service
+
+```bash
+sudo cloudflared service uninstall
 ```
 
 ---
@@ -207,6 +225,12 @@ docker restart cloudflared
 docker rm -f cloudflared
 ```
 
+### Supprimer l’image
+
+```bash
+docker image rm cloudflare/cloudflared:latest
+```
+
 ---
 
 ## 8. Docker Compose — tunnel permanent
@@ -246,7 +270,52 @@ docker compose down
 
 ---
 
-## 9. DNS
+## 9. Désinstaller complètement un tunnel permanent
+
+### Côté Cloudflare
+
+```text
+Cloudflare Dashboard
+→ Protect & Connect
+→ Networking
+→ Tunnels
+→ choisir le tunnel
+→ supprimer la route publique
+→ supprimer le tunnel si aucun service ne l’utilise encore
+```
+
+### Windows
+
+```powershell
+Stop-Service cloudflared
+cloudflared service uninstall
+winget uninstall --id Cloudflare.cloudflared
+```
+
+### Linux Debian/Ubuntu/Raspberry Pi OS
+
+```bash
+sudo cloudflared service uninstall
+sudo apt-get purge cloudflared
+sudo apt-get autoremove
+```
+
+### Docker
+
+```bash
+docker rm -f cloudflared
+docker image rm cloudflare/cloudflared:latest
+```
+
+### Docker Compose
+
+```bash
+docker compose down
+```
+
+---
+
+## 10. DNS
 
 ### Voir les serveurs DNS du domaine
 
@@ -272,7 +341,7 @@ nslookup app.mondomaine.fr 8.8.8.8
 
 ---
 
-## 10. Ports locaux
+## 11. Ports locaux
 
 ### Linux — voir les ports en écoute
 
@@ -294,7 +363,7 @@ netstat -ano | findstr :8080
 
 ---
 
-## 11. Fiche express
+## 12. Fiche express
 
 ```text
 Domaine :
@@ -317,4 +386,6 @@ Notes :
 - Quick Tunnels : https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/do-more-with-tunnels/trycloudflare/
 - Création d’un tunnel : https://developers.cloudflare.com/tunnel/setup/
 - Exécution comme service : https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/do-more-with-tunnels/local-management/as-a-service/
+- Désinstallation du service `cloudflared` : https://developers.cloudflare.com/tunnel/troubleshooting/
+- Téléchargement et paquets `cloudflared` : https://developers.cloudflare.com/tunnel/downloads/
 - Dépannage : https://developers.cloudflare.com/tunnel/troubleshooting/
