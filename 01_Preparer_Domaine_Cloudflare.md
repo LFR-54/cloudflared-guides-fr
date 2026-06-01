@@ -69,7 +69,7 @@ Dans le Dashboard Cloudflare :
 Cloudflare Dashboard
 → Add a site
 → entrer le domaine, par exemple mondomaine.fr
-→ choisir le plan adapté
+→ choisir le plan adapté (free version)
 → continuer
 ```
 
@@ -77,7 +77,7 @@ Cloudflare analyse ensuite les enregistrements DNS existants. Cette étape est i
 
 ---
 
-## 5. Vérifier les DNS détectés par Cloudflare
+## 5. Vérifier les DNS détectés par Cloudflare (VOUS POUVEZ PASSER SAUF SI UTILISÉ POUR LES E-MAILS)
 
 Avant de modifier les serveurs DNS chez le registrar, il faut vérifier ce que Cloudflare a détecté.
 
