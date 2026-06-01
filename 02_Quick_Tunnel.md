@@ -39,6 +39,9 @@ C’est utile pour :
 - pas de service automatique par défaut 
 - protection à prévoir si l’application est sensible.
 
+> [!NOTE]
+> Si pendant le Quick Tunnel il devait y avoir une coupure réseau, de quelque minutes par exemple, et que ce dernier revient juste après Quick Tunnel ce reconnecte automatiquement et n'annulera pas votre domaine en cours.
+
 ---
 
 ## 3. Préparer l’application locale
@@ -63,7 +66,36 @@ Si l’application ne répond pas localement, le Quick Tunnel ne fonctionnera pa
 
 ## 4. Quick Tunnel sur Windows
 
-### 4.1. Vérifier que `cloudflared` est disponible
+### 4.1. Installer `cloudflared`
+
+Pour un Quick Tunnel, l’utilisateur n’a pas besoin d’avoir déjà un compte Cloudflare, ni de créer un tunnel dans le dashboard Cloudflare.
+
+Il doit seulement avoir `cloudflared`, le programme qui ouvre la connexion temporaire vers Cloudflare.
+
+Méthode simple avec `winget` :
+
+```powershell
+winget install --id Cloudflare.cloudflared
+```
+
+Méthode manuelle :
+
+1. ouvrir la page officielle de téléchargement de `cloudflared`
+2. télécharger la version Windows adaptée, généralement `Windows 64-bit`
+3. placer `cloudflared.exe` dans un dossier simple, par exemple :
+
+```text
+C:\Cloudflared\bin
+```
+
+> [!IMPORTANT]
+> L’écran `Create a Tunnel` du dashboard Cloudflare sert à créer un tunnel permanent lié au compte Cloudflare.
+>
+> La commande affichée dans cet écran, du type `cloudflared.exe service install <token>`, n’est pas la commande d’un Quick Tunnel. Elle installe un service Windows connecté à un tunnel permanent.
+>
+> Pour un Quick Tunnel, on utilise seulement `cloudflared tunnel --url ...`.
+
+Vérifier ensuite que `cloudflared` répond :
 
 ```powershell
 cloudflared --version
@@ -73,6 +105,7 @@ Si `cloudflared.exe` n’est pas dans le `PATH`, se placer dans le dossier où s
 
 ```powershell
 cd C:\Cloudflared\bin
+.\cloudflared.exe --version
 ```
 
 ### 4.2. Lancer le tunnel temporaire
@@ -223,4 +256,5 @@ Dans ce cas, lire ensuite :
 ## Sources utiles
 
 - Quick Tunnels : https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/do-more-with-tunnels/trycloudflare/
+- Téléchargement de `cloudflared` : https://developers.cloudflare.com/tunnel/downloads/
 - Cloudflare Tunnel : https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/

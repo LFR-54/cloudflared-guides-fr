@@ -108,7 +108,7 @@ Cloudflare Dashboard
 
 ## 6. Récupérer les nameservers Cloudflare
 
-Pendant l’ajout du domaine, Cloudflare fournit deux serveurs DNS à utiliser.
+Juste après la vérification des DNS, pendant l’ajout du domaine donc, Cloudflare fournit deux serveurs DNS à utiliser.
 
 Exemple fictif :
 
