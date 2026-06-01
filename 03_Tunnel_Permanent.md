@@ -142,6 +142,24 @@ Choisir aussi l’architecture si l’interface le demande :
 
 Cloudflare affiche ensuite des commandes à copier. Il ne faut pas réécrire le token à la main.
 
+Pendant l’installation, garder cette page Cloudflare ouverte. En bas de l’écran, Cloudflare affiche généralement un bloc de statut, par exemple :
+
+```text
+Connection Status
+Waiting for your Tunnel to connect...
+```
+
+Après avoir lancé les commandes sur la machine Windows, Linux ou Docker, il faut attendre que ce statut indique que le tunnel est connecté.
+
+Selon l’interface, le statut peut apparaître sous une forme proche de :
+
+```text
+Connected
+Healthy
+```
+
+Tant que Cloudflare indique que le tunnel attend la connexion, il ne faut pas encore ajouter la route publique. Le connecteur `cloudflared` n’est pas encore correctement relié au tunnel.
+
 ---
 
 ## 6. Installation sur Windows
@@ -375,7 +393,7 @@ Le tunnel doit apparaître en état :
 Healthy
 ```
 
-Si le tunnel n’est pas `Healthy`, consulter `04_Depannage.md` avant d’ajouter la route publique.
+Si le tunnel n’est pas `Healthy` ou si l’écran d’installation indique encore que Cloudflare attend la connexion, consulter `04_Depannage.md` avant d’ajouter la route publique.
 
 ---
 
