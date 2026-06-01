@@ -48,33 +48,36 @@ flowchart TD
 
 ## 3. Où créer le tunnel dans Cloudflare ?
 
-Cloudflare propose aujourd’hui deux chemins possibles selon l’interface et le workflow.
+La méthode recommandée consiste à créer le tunnel depuis le Dashboard Cloudflare.
 
-### Option A — Dashboard principal Cloudflare
+Dans le Dashboard Cloudflare, aller dans :
 
 ```text
 Cloudflare Dashboard
+→ panneau latéral gauche
+→ Protect & Connect
 → Networking
 → Tunnels
-→ Create Tunnel
 ```
 
-Ce chemin est adapté pour publier une application publique derrière Cloudflare.
+Sur cette page, il est possible de voir les tunnels existants et leur état.
 
-### Option B — Dashboard Zero Trust
+Un tunnel correctement connecté apparaît généralement avec un statut du type :
 
 ```text
-Zero Trust
-→ Networks
-→ Connectors
-→ Cloudflare Tunnels
-→ Create a tunnel
+Healthy
 ```
 
-Ce chemin est pratique si l’objectif est aussi d’utiliser Cloudflare Access ou des politiques Zero Trust.
+Créer ensuite le tunnel avec :
+
+```text
+Create Tunnel
+```
 
 > [!NOTE]
-> Les deux chemins peuvent mener à la gestion des tunnels. Si un bouton ou un menu a un nom légèrement différent, chercher la logique : `Tunnels`, puis `Create Tunnel`, puis connecteur `cloudflared`.
+> Selon l’interface Cloudflare, certains menus peuvent encore passer par `Zero Trust`, `Networks`, `Connectors`, puis `Cloudflare Tunnels`.
+>
+> Si le menu a un nom légèrement différent, chercher surtout la logique : `Protect & Connect`, puis `Networking`, puis `Tunnels`.
 
 ---
 
