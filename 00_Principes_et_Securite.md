@@ -93,13 +93,13 @@ Le point important : `cloudflared` ne publie pas directement un port local sur I
 
 Son rôle est de :
 
-- créer une connexion sortante vers Cloudflare ;
-- s’attacher à un tunnel précis ;
-- maintenir la connexion active ;
-- recevoir depuis Cloudflare les requêtes destinées au tunnel ;
-- transformer ces requêtes en appels locaux vers le Service URL ;
-- renvoyer les réponses locales vers Cloudflare ;
-- se reconnecter si la connexion tombe ;
+- créer une connexion sortante vers Cloudflare 
+- s’attacher à un tunnel précis 
+- maintenir la connexion active 
+- recevoir depuis Cloudflare les requêtes destinées au tunnel 
+- transformer ces requêtes en appels locaux vers le Service URL 
+- renvoyer les réponses locales vers Cloudflare 
+- se reconnecter si la connexion tombe 
 - fonctionner comme service système ou conteneur pour rester disponible après redémarrage.
 
 Cloudflare documente le principe comme une connexion **outbound-only** : le démon local crée les connexions vers le réseau Cloudflare, au lieu d’attendre des connexions entrantes depuis Internet.
@@ -241,11 +241,11 @@ Cloudflare Tunnel réduit l’exposition réseau directe.
 
 Il permet notamment :
 
-- d’éviter une redirection de port NAT ;
-- de masquer l’IP publique réelle de l’origine ;
-- de fonctionner sans IP publique fixe ;
-- de fonctionner dans de nombreux cas derrière un CG-NAT ;
-- de centraliser HTTPS, routage et accès côté Cloudflare ;
+- d’éviter une redirection de port NAT 
+- de masquer l’IP publique réelle de l’origine 
+- de fonctionner sans IP publique fixe 
+- de fonctionner dans de nombreux cas derrière un CG-NAT 
+- de centraliser HTTPS, routage et accès côté Cloudflare 
 - d’ajouter Cloudflare Access devant une application privée.
 
 ---
@@ -287,10 +287,10 @@ flowchart LR
 
 Exemples de politiques :
 
-- autoriser certaines adresses e-mail ;
-- autoriser un domaine e-mail précis ;
-- imposer un fournisseur d’identité ;
-- bloquer tout accès non authentifié ;
+- autoriser certaines adresses e-mail 
+- autoriser un domaine e-mail précis 
+- imposer un fournisseur d’identité 
+- bloquer tout accès non authentifié 
 - séparer les règles entre administration, API et interface publique.
 
 ### 12.2. Garder l’authentification interne
