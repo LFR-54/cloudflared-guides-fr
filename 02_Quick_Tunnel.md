@@ -16,10 +16,10 @@ https://quelque-chose.trycloudflare.com
 
 C’est utile pour :
 
-- tester une application locale ;
-- montrer un projet pendant une durée courte ;
-- vérifier si une application répond depuis Internet ;
-- faire un test avant un tunnel permanent ;
+- tester une application locale 
+- montrer un projet pendant une durée courte 
+- vérifier si une application répond depuis Internet 
+- faire un test avant un tunnel permanent 
 - dépanner sans toucher au domaine officiel.
 
 ---
@@ -31,12 +31,12 @@ C’est utile pour :
 
 À retenir :
 
-- adresse aléatoire ;
-- domaine en `trycloudflare.com` ;
-- pas de domaine personnalisé ;
-- pas prévu pour rester permanent ;
-- arrêt du lien quand la commande s’arrête ;
-- pas de service automatique par défaut ;
+- adresse aléatoire 
+- domaine en `trycloudflare.com` 
+- pas de domaine personnalisé 
+- pas prévu pour rester permanent 
+- arrêt du lien quand la commande s’arrête 
+- pas de service automatique par défaut 
 - protection à prévoir si l’application est sensible.
 
 ---
@@ -205,10 +205,10 @@ Ici, `web` est le nom du conteneur de l’application.
 
 Le tunnel permanent devient nécessaire pour :
 
-- une adresse propre comme `app.mondomaine.fr` ;
-- un service qui redémarre automatiquement ;
-- une configuration durable ;
-- une protection via Cloudflare Access ;
+- une adresse propre comme `app.mondomaine.fr` 
+- un service qui redémarre automatiquement 
+- une configuration durable 
+- une protection via Cloudflare Access 
 - une publication sérieuse ou régulière.
 
 Dans ce cas, lire ensuite :

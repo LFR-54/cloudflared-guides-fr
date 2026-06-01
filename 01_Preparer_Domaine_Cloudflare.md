@@ -10,12 +10,12 @@
 
 Ce document prépare tout ce qui doit exister avant de créer un tunnel permanent :
 
-- un nom de domaine ;
-- un compte Cloudflare ;
-- le domaine ajouté dans Cloudflare ;
-- les serveurs DNS du registrar remplacés par ceux de Cloudflare ;
-- les DNS existants vérifiés ;
-- une application locale déjà fonctionnelle ;
+- un nom de domaine 
+- un compte Cloudflare 
+- le domaine ajouté dans Cloudflare 
+- les serveurs DNS du registrar remplacés par ceux de Cloudflare 
+- les DNS existants vérifiés 
+- une application locale déjà fonctionnelle 
 - les informations locales utiles notées proprement.
 
 Le tunnel permanent ne doit être créé qu’après cette préparation. Sinon, les erreurs DNS, de domaine ou de Service URL deviennent difficiles à distinguer.
@@ -26,13 +26,13 @@ Le tunnel permanent ne doit être créé qu’après cette préparation. Sinon, 
 
 Un domaine peut être acheté chez un registrar, par exemple :
 
-- OVH ;
-- Ionos ;
-- Namecheap ;
-- Gandi ;
-- Infomaniak ;
-- Dynadot ;
-- Porkbun ;
+- OVH 
+- Ionos 
+- Namecheap 
+- Gandi 
+- Infomaniak 
+- Dynadot 
+- Porkbun 
 - Cloudflare Registrar si disponible pour le domaine concerné.
 
 Exemple :
@@ -150,10 +150,10 @@ bob.ns.cloudflare.com
 
 Selon le registrar, le menu peut s’appeler :
 
-- `Serveurs DNS` ;
-- `Nameservers` ;
-- `Gestion DNS` ;
-- `DNS avancé` ;
+- `Serveurs DNS` 
+- `Nameservers` 
+- `Gestion DNS` 
+- `DNS avancé` 
 - `Délégation DNS`.
 
 Le principe reste le même : les anciens serveurs DNS du registrar doivent être remplacés par les deux serveurs DNS fournis par Cloudflare.

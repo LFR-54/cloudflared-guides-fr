@@ -129,12 +129,12 @@ docker restart cloudflared
 
 Causes possibles :
 
-- service non démarré ;
-- token incorrect ;
-- tunnel supprimé ou recréé ;
-- machine sans Internet ;
-- pare-feu/antivirus qui bloque `cloudflared` ;
-- conteneur Docker arrêté ;
+- service non démarré 
+- token incorrect 
+- tunnel supprimé ou recréé 
+- machine sans Internet 
+- pare-feu/antivirus qui bloque `cloudflared` 
+- conteneur Docker arrêté 
 - mauvaise commande copiée depuis Cloudflare.
 
 ---
@@ -240,11 +240,11 @@ Tunnels
 
 Points à contrôler :
 
-- domaine actif dans Cloudflare ;
-- sous-domaine correctement écrit ;
-- route créée dans le bon tunnel ;
-- tunnel `Healthy` ;
-- domaine sélectionné dans le champ `Domain` ;
+- domaine actif dans Cloudflare 
+- sous-domaine correctement écrit 
+- route créée dans le bon tunnel 
+- tunnel `Healthy` 
+- domaine sélectionné dans le champ `Domain` 
 - tunnel non supprimé puis recréé sans mise à jour de la route.
 
 Commandes utiles :
@@ -276,10 +276,10 @@ Tunnels
 
 À contrôler :
 
-- le sous-domaine demandé est le bon ;
-- la route existe ;
-- le champ `Path` est vide ou volontairement renseigné ;
-- l’application locale possède bien la page demandée ;
+- le sous-domaine demandé est le bon 
+- la route existe 
+- le champ `Path` est vide ou volontairement renseigné 
+- l’application locale possède bien la page demandée 
 - le Service URL cible la bonne application.
 
 ---
@@ -294,17 +294,17 @@ ERR_TOO_MANY_REDIRECTS
 
 Causes possibles :
 
-- l’application force HTTPS localement ;
-- Cloudflare force HTTPS publiquement ;
-- mauvais mode SSL/TLS ;
-- proxy mal compris par l’application ;
+- l’application force HTTPS localement 
+- Cloudflare force HTTPS publiquement 
+- mauvais mode SSL/TLS 
+- proxy mal compris par l’application 
 - en-têtes `X-Forwarded-*` attendus mais non gérés.
 
 À vérifier :
 
-- utiliser HTTP local si possible : `http://localhost:8080` ;
-- vérifier les réglages HTTPS de l’application ;
-- vérifier les réglages SSL/TLS Cloudflare ;
+- utiliser HTTP local si possible : `http://localhost:8080` 
+- vérifier les réglages HTTPS de l’application 
+- vérifier les réglages SSL/TLS Cloudflare 
 - vérifier les en-têtes proxy si l’application en dépend.
 
 ---
@@ -367,11 +367,11 @@ Diagnostic court :
 
 Si la configuration est confuse, la méthode la plus sûre est de simplifier :
 
-1. supprimer uniquement la route publique incorrecte ;
-2. conserver le tunnel si son statut est `Healthy` ;
-3. tester l’application localement depuis la machine `cloudflared` ;
-4. recréer une route simple sans `Path` ;
-5. utiliser un seul sous-domaine ;
+1. supprimer uniquement la route publique incorrecte 
+2. conserver le tunnel si son statut est `Healthy` 
+3. tester l’application localement depuis la machine `cloudflared` 
+4. recréer une route simple sans `Path` 
+5. utiliser un seul sous-domaine 
 6. ajouter Cloudflare Access seulement après validation du fonctionnement de base.
 
 ---

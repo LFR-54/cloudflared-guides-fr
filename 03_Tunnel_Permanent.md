@@ -485,9 +485,9 @@ https://app.mondomaine.fr
 
 Tests utiles :
 
-- fenêtre privée ;
-- téléphone en 4G/5G ;
-- autre réseau Internet ;
+- fenêtre privée 
+- téléphone en 4G/5G 
+- autre réseau Internet 
 - vidage du cache DNS si nécessaire.
 
 Si l’adresse ne répond pas correctement, utiliser `04_Depannage.md`.
